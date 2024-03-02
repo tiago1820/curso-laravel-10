@@ -43,9 +43,9 @@ class SupportController extends Controller
         return redirect()->route('supports.index');
     }
 
-    public function edit(Support $support, string|int $id) 
+    public function edit(Support $support, string|int $id)
     {
-        if(!$support = $support->where('id', $id)->first()){
+        if (!$support = $support->where('id', $id)->first()) {
             return back();
         }
 
@@ -54,7 +54,7 @@ class SupportController extends Controller
 
     public function update(Request $request, Support $support, string $id)
     {
-        if(!$support = $support->find($id)){
+        if (!$support = $support->find($id)) {
             return back();
         }
 
@@ -67,24 +67,15 @@ class SupportController extends Controller
         ]));
 
         return redirect()->route('supports.index');
-
     }
 
+    public function destroy(string|int $id)
+    {
+        if (!$support = Support::find($id)) {
+            return back();
+        }
+        $support->delete();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return redirect()->route('supports.index');
+    }
 }
